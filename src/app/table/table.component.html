@@ -1,0 +1,39 @@
+<div class="ui-g-12">
+    <div>
+
+        <button (click)="menosRow()" style="border:none; margin: 4px;"><i class="pi pi-angle-left"></i></button>
+        {{row}}
+        <button (click)="maisRow()" style="border:none; margin: 4px;"><i class="pi pi-angle-right"></i></button>
+    </div>
+    <p-table [value]="lancamentos" [paginator]="true" [rows]="row">
+
+        <ng-template pTemplate="header">
+            <tr id="central">
+                <th colspan="3">Pessoa</th>
+                <th colspan="3">Descrição</th>
+                <th colspan="1">Vencimento</th>
+                <th colspan="1">Pagamento</th>
+                <th colspan="1">Valor</th>
+                <th colspan="1"></th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-lancamentos>
+
+            <tr>
+                <td colspan="3">{{lancamentos.pessoa}}</td>
+                <td colspan="3">{{lancamentos.descricao}}</td>
+                <td id="alinha" colspan="1">{{lancamentos.dataVencimento}}</td>
+                <td id="alinha" colspan="1">{{lancamentos.dataPagamento}}</td>
+                <td [style.color]="lancamentos.tipo == 'DESPESA' ? 'red' : 'blue'" id="alinha" colspan="1">{{lancamentos.valor}}</td>
+                <td colspan="1">
+                    <button pButton icon="pi pi-pencil" style="margin: 2px;"></button>
+                    <button pButton icon="pi pi-trash" style="margin: 2px;"></button>
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+
+</div>
+<div class="ui-g-12">
+    <a pButton label="Novo Lançamento"></a>
+</div>
